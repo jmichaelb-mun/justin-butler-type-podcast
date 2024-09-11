@@ -253,5 +253,3 @@ Parameters:
 - Settings menu with custom keybinds and audio settings
 - Utilize pokemon sprites to better help visualize what pokemon are which types while they play
 - User accounts and authentication
-
-

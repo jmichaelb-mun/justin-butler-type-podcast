@@ -65,7 +65,7 @@ I would say anyone interested in pokemon, but more specifically players new to t
 
 #### In-Game Pause
 
-![](ingame-pause.png)
+![](ingame-pause.PNG)
 
 #### Victory Screen
 
@@ -77,7 +77,7 @@ I would say anyone interested in pokemon, but more specifically players new to t
 
 #### High Scores Page
 
-![](High-scores.png)
+![](High-scores.PNG)
 
 ### Data
 

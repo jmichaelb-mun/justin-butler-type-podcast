@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+import "./HomePage.scss"
+
 export default function HomePage(){
     return(
         <>
-        <p>Welcome</p>
+        <Link to={"/play"} className="play-link">Play</Link>
         </>
     )
 }

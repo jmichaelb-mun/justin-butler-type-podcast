@@ -4,12 +4,19 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 import { useState, useCallback, useEffect } from 'react';
 import './GamePage.scss'
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import LevelCompleteModal from '../../components/LevelCompleteModal/LevelCompleteModal';
+
+
 
 function GamePage() {
     const [isGameOver, setIsGameOver] = useState(false);
-    const [score, setScore] = useState();
+    const [score, setScore] = useState(0);
     const [type, setType] = useState();
     const [isType, setIsType] = useState(false);
+    const [health, setHealth] = useState(5);
+    const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(false);
 
     const { unityProvider, addEventListener, removeEventListener } = useUnityContext({
         loaderUrl: "build/build.loader.js",
@@ -27,6 +34,12 @@ function GamePage() {
     const handleGameOver = useCallback((score) => {
         setIsGameOver(true);
         setScore(score);
+        navigate("/loss", { replace: true });
+    }, []);
+
+    const handleUpdateHealthScore = useCallback((health, score) => {
+        setHealth(health);
+        setScore(score);
     }, []);
 
     useEffect(() => {
@@ -35,6 +48,7 @@ function GamePage() {
             removeEventListener("GameOver", handleGameOver);
         };
     }, [addEventListener, removeEventListener, handleGameOver]);
+
     useEffect(() => {
         addEventListener("SendType", handleSendType);
         return () => {
@@ -42,17 +56,51 @@ function GamePage() {
         };
     }, [addEventListener, removeEventListener, handleSendType]);
 
+    useEffect(() => {
+        addEventListener("UpdateHealthScore", handleUpdateHealthScore);
+        return () => {
+            removeEventListener("UpdateHealthScore", handleUpdateHealthScore);
+        };
+    }, [addEventListener, removeEventListener, handleUpdateHealthScore]);
+
+    const handleOpenModal = () => {
+        setIsOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsOpen(false);
+
+    };
+
     return (
-        <>
+        <section className='game-cont'>
             {isType === true && (
-                <p>{`Player Type: ${type}`}</p>
+                <div className='player-info'>
+                    <p>{`Player Type: ${type}`}</p>
+                    <div className='health-bar'>
+                        <p>
+                            {`HP: `}
+                        </p>
+                        <progress value={health} max={5} />
+                    </div>
+                    <p>{`Score ${score}`}</p>
+                </div>
             )}
             <Unity unityProvider={unityProvider} />
             {isGameOver === true && (
-                <p>{`Game Over! You've scored ${score} points.`}</p>
+                { handleGameOver }
             )}
-
-        </>
+            <button
+                className="warehouses__delete-btn"
+                onClick={() => handleOpenModal()}
+            >hello</button>
+            {isOpen && (
+                <LevelCompleteModal
+                    onClose={handleCloseModal}
+                    isOpen={isOpen}
+                />
+            )}
+        </section>
     )
 }
 

@@ -13,7 +13,7 @@ export default function LossPage() {
             <TypeAnimation
                 sequence={["You are out of usable Pokemon and scurry back to the Pokemon Center, protecting your exhausted Pokemon from any further harm..."]}
                 className='typing-text'
-                speed={50}
+                speed={30}
             />
         </div>
     )

@@ -11,18 +11,19 @@ import LevelCompleteModal from '../../components/LevelCompleteModal/LevelComplet
 
 function GamePage() {
     const [isGameOver, setIsGameOver] = useState(false);
-    const [score, setScore] = useState(0);
+    const [newScore, setNewScore] = useState(0);
     const [type, setType] = useState();
     const [isType, setIsType] = useState(false);
-    const [health, setHealth] = useState(5);
+    const [newHealth, setNewHealth] = useState(5);
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
+    const [goNext, setGoNext] = useState(false);
 
-    const { unityProvider, addEventListener, removeEventListener } = useUnityContext({
-        loaderUrl: "build/build.loader.js",
-        dataUrl: "build/build.data",
-        frameworkUrl: "build/build.framework.js",
-        codeUrl: "build/build.wasm",
+    const { unityProvider, addEventListener, removeEventListener, sendMessage } = useUnityContext({
+        loaderUrl: "Build/type-podcast-client.loader.js",
+        dataUrl: "Build/type-podcast-client.data",
+        frameworkUrl: "Build/type-podcast-client.framework.js",
+        codeUrl: "Build/type-podcast-client.wasm",
     });
 
     const handleSendType = useCallback((type) => {
@@ -33,14 +34,20 @@ function GamePage() {
 
     const handleGameOver = useCallback((score) => {
         setIsGameOver(true);
-        setScore(score);
+        setNewScore(score);
         navigate("/loss", { replace: true });
     }, []);
 
     const handleUpdateHealthScore = useCallback((health, score) => {
-        setHealth(health);
-        setScore(score);
+        setNewHealth(health);
+        setNewScore(score);
     }, []);
+
+    const handleGoNext = useCallback((isFinished) => {
+        setGoNext(isFinished);
+        handleOpenModal();
+    }, []);
+
 
     useEffect(() => {
         addEventListener("GameOver", handleGameOver);
@@ -63,13 +70,21 @@ function GamePage() {
         };
     }, [addEventListener, removeEventListener, handleUpdateHealthScore]);
 
+    useEffect(() => {
+        addEventListener("GoNext", handleGoNext);
+        return () => {
+            removeEventListener("GoNext", handleGoNext);
+        };
+    }, [addEventListener, removeEventListener, handleGoNext]);
+
+
     const handleOpenModal = () => {
         setIsOpen(true);
     };
 
     const handleCloseModal = () => {
         setIsOpen(false);
-
+        sendMessage("PlayerCharacter", "ReloadScene");
     };
 
     return (
@@ -81,19 +96,15 @@ function GamePage() {
                         <p>
                             {`HP: `}
                         </p>
-                        <progress value={health} max={5} />
+                        <progress value={newHealth} max={5} />
                     </div>
-                    <p>{`Score ${score}`}</p>
+                    <p>{`Score ${newScore}`}</p>
                 </div>
             )}
             <Unity unityProvider={unityProvider} />
             {isGameOver === true && (
                 { handleGameOver }
             )}
-            <button
-                className="warehouses__delete-btn"
-                onClick={() => handleOpenModal()}
-            >hello</button>
             {isOpen && (
                 <LevelCompleteModal
                     onClose={handleCloseModal}

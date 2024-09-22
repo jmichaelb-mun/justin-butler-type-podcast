@@ -9,7 +9,7 @@ export default function LossPage() {
         navigate('/', { replace: true });
     })
     return (
-        <div onClick={handleCLick}>
+        <div className='loss=page' onClick={handleCLick}>
             <TypeAnimation
                 sequence={["You are out of usable Pokemon and scurry back to the Pokemon Center, protecting your exhausted Pokemon from any further harm..."]}
                 className='typing-text'

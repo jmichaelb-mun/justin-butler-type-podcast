@@ -1,13 +1,14 @@
 @use './styles/typography' as *;
 
-body{
-  margin:0;
+body {
+  margin: 0;
 }
 
 #root {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  height: 100vh;
 }
 
 .logo {
@@ -16,9 +17,11 @@ body{
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -27,6 +30,7 @@ body{
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -46,5 +50,12 @@ body{
   color: #888;
 }
 
-#unity-container { position: absolute }
-#unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) }
+#unity-container {
+  position: absolute
+}
+
+#unity-container.unity-desktop {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%)
+}

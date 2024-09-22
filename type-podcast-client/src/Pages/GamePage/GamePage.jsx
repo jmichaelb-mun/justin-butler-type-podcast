@@ -14,6 +14,7 @@ function GamePage() {
     const [newScore, setNewScore] = useState(0);
     const [type, setType] = useState();
     const [isType, setIsType] = useState(false);
+    const [typeImage, setTypeImage] = useState();
     const [newHealth, setNewHealth] = useState(5);
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
@@ -26,10 +27,26 @@ function GamePage() {
         codeUrl: "Build/type-podcast-client.wasm",
     });
 
+    // useEffect(() => {
+    //     if(isType){
+    //         const getTypeImage = async () => {
+    //             try{
+    //                 const response = await axios.get(`http://localhost:8080/images/${type}.png`)
+    //                 console.log(response);
+    //                 setTypeImage(response.data);
+    //             } catch (err){
+    //                 console.log("ERROR: ",err);
+    //             }
+    //         }
+    //         getTypeImage();
+    //     }
+    // }, [isType, type]);
+
     const handleSendType = useCallback((type) => {
         console.log(type);
         setIsType(true);
         setType(type);
+
     }, []);
 
     const handleGameOver = useCallback((score) => {
@@ -91,7 +108,8 @@ function GamePage() {
         <section className='game-cont'>
             {isType === true && (
                 <div className='player-info'>
-                    <p>{`Player Type: ${type}`}</p>
+                    <p>{`Player Type: `}</p>
+                    <img src={`http://localhost:8080/images/${type}.png`} alt="" />
                     <div className='health-bar'>
                         <p>
                             {`HP: `}

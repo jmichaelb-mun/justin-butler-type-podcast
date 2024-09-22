@@ -6,7 +6,7 @@ import './GamePage.scss'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import LevelCompleteModal from '../../components/LevelCompleteModal/LevelCompleteModal';
-
+import Header from "../../components/Header/Header.jsx"
 
 
 function GamePage() {
@@ -36,7 +36,7 @@ function GamePage() {
 
     const handleGameOver = useCallback(async (score) => {
         try {
-            await axios.post("http://localhost:8080/score", { name:"green", score });
+            await axios.post("http://localhost:8080/score", { name: "green", score });
         } catch (error) {
             alert(`ERROR: ${error.response.data}`, error);
         }
@@ -95,31 +95,36 @@ function GamePage() {
     };
 
     return (
-        <section className='game-cont'>
-            {isType === true && (
-                <div className='player-info'>
-                    <p>{`Player Type: `}</p>
-                    <img src={`http://localhost:8080/images/${type}.png`} alt="" />
-                    <div className='health-bar'>
-                        <p>
-                            {`HP: `}
-                        </p>
-                        <progress value={newHealth} max={5} />
+        <>
+            <Header />
+            <section className='game-cont'>
+                {isType === true && (
+                    <div className='player-info'>
+                        <div className='player-info__type-cont'>
+                            <p>{`Type: `}</p>
+                            <img className="player-info__type" src={`http://localhost:8080/images/${type}.png`} alt="" />
+                        </div>
+                        <div className='health-bar'>
+                            <p>
+                                {`HP: `}
+                            </p>
+                            <progress value={newHealth} max={5} />
+                        </div>
+                        <p>{`Score: ${newScore}`}</p>
                     </div>
-                    <p>{`Score ${newScore}`}</p>
-                </div>
-            )}
-            <Unity unityProvider={unityProvider} />
-            {isGameOver === true && (
-                { handleGameOver }
-            )}
-            {isOpen && (
-                <LevelCompleteModal
-                    onClose={handleCloseModal}
-                    isOpen={isOpen}
-                />
-            )}
-        </section>
+                )}
+                <Unity unityProvider={unityProvider} />
+                {isGameOver === true && (
+                    { handleGameOver }
+                )}
+                {isOpen && (
+                    <LevelCompleteModal
+                        onClose={handleCloseModal}
+                        isOpen={isOpen}
+                    />
+                )}
+            </section>
+        </>
     )
 }
 

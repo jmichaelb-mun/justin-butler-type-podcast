@@ -1,4 +1,29 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.menu-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 7rem;
+    gap: 2rem;
+    @include tablet{
+        padding-top: 15rem;
+        gap: 3rem;
+    }
+}
+
 .play-link{
-    font-size: 64px;
-    color: white;
+    text-decoration: none;
+    font-size: 4rem;
+    color: $primary-font;
+    text-shadow:  -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+}
+.hof-link{
+    text-align: center;
+    font-size: 2rem;
+    color: $primary-font;
+    text-decoration: none;
+    text-shadow:  -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
 }

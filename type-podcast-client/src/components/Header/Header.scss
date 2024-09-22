@@ -9,14 +9,14 @@
     gap: 1rem;
     padding:1.5rem;
     background-color: $header-background;
-    margin:-1rem;
+    margin:-1rem -1rem 0;
     @include tablet {
         flex-direction: row;
-        margin: -1rem -2.25rem;
+        margin: -1rem -2.25rem 0;
     }
     @include desktop {
         flex-direction: row;
-        margin: -1rem -7.25rem;
+        margin: -1rem -7.25rem 0;
     }
 
     &__title {

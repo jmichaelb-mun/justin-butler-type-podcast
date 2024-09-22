@@ -5,6 +5,7 @@ import GamePage from './Pages/GamePage/GamePage';
 import HomePage from './Pages/HomePage/HomePage';
 import LossPage from './Pages/LossPage/LossPage';
 import HighScoresPage from './Pages/HighScoresPage/HighScoresPage';
+import Header from './components/Header/Header';
 
 
 function App() {

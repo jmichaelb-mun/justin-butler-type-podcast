@@ -1,0 +1,116 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding:1.5rem;
+    background-color: $header-background;
+    margin:-1rem;
+    @include tablet {
+        flex-direction: row;
+        margin: -1rem -2.25rem;
+    }
+    @include desktop {
+        flex-direction: row;
+        margin: -1rem -7.25rem;
+    }
+
+    &__title {
+        text-align: center;
+        text-decoration: none;
+        color: $main-background;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__interact-bar {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 90%;
+        max-width: 20rem;
+
+
+        @include tablet {
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: 0.5rem;
+
+        }
+    }
+}
+
+.upload-link {
+    text-decoration: none;
+        display: flex;
+    flex-direction: row;
+}
+
+.upload-btn {
+    background-color: $main-background;
+    color: $primary-accent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    border: none;
+    height: 2.5rem;
+    width: 100%;
+    text-wrap: nowrap;
+    @include tablet {
+        width: 9.375rem;
+        padding: 0 3rem;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: $primary-accent;
+        color: $main-background;
+    }
+}
+
+
+
+.user-avatar {
+    min-height: 2.25rem;
+    max-height: 2.25rem;
+    width: 2.25rem;
+    object-fit: cover;
+    border-radius: 50%;
+    aspect-ratio: auto;
+    object-position: center;
+
+    @include tablet {
+        display: none;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &--tablet {
+        display: none;
+
+        @include tablet {
+            display: flex;
+            min-height: 2.25rem;
+            max-height: 2.25rem;
+            width: 2.25rem;
+            object-fit: cover;
+            border-radius: 50%;
+            aspect-ratio: auto;
+            object-position: center;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -12,7 +12,7 @@ export default function HighScoresPage() {
                 try {
                     const response = await axios.get(`http://localhost:8080/score`)
                     let list = response.data
-                    list = list.splice(0, 5);
+                    list = list.splice(0, 6);
                     setScores(list);
                 } catch (err) {
                     console.log("ERROR: ", err);

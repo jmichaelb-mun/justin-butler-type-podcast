@@ -27,21 +27,6 @@ function GamePage() {
         codeUrl: "Build/type-podcast-client.wasm",
     });
 
-    // useEffect(() => {
-    //     if(isType){
-    //         const getTypeImage = async () => {
-    //             try{
-    //                 const response = await axios.get(`http://localhost:8080/images/${type}.png`)
-    //                 console.log(response);
-    //                 setTypeImage(response.data);
-    //             } catch (err){
-    //                 console.log("ERROR: ",err);
-    //             }
-    //         }
-    //         getTypeImage();
-    //     }
-    // }, [isType, type]);
-
     const handleSendType = useCallback((type) => {
         console.log(type);
         setIsType(true);
@@ -49,7 +34,12 @@ function GamePage() {
 
     }, []);
 
-    const handleGameOver = useCallback((score) => {
+    const handleGameOver = useCallback(async (score) => {
+        try {
+            await axios.post("http://localhost:8080/score", { name:"green", score });
+        } catch (error) {
+            alert(`ERROR: ${error.response.data}`, error);
+        }
         setIsGameOver(true);
         setNewScore(score);
         navigate("/loss", { replace: true });

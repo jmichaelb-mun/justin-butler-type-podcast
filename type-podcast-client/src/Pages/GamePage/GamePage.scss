@@ -14,11 +14,11 @@
     align-items: center;
     flex-direction: column;
     background-color: black;
-    padding: 2rem 2rem 5rem;
+    padding: 2rem 2rem;
     margin-top: 2rem;
 
     @include tablet {
-        height: 50vw;
+        height: 60vw;
         max-height: 800px;
     }
 }
@@ -29,7 +29,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    padding-bottom: 1rem;
+    padding: 1rem 0;
 
     &__type-cont {
         display: flex;
@@ -47,9 +47,7 @@
             width: fit-content;
         }
     }
-}
-
-p {
+    &__text{
     color: white;
     font-size: 10px;
 
@@ -57,6 +55,9 @@ p {
         font-size: 1rem;
     }
 }
+}
+
+
 
 progress {
     width: 2rem;
@@ -92,4 +93,10 @@ progress {
     display: flex;
     align-items: center;
     gap: 0.25rem;
+}
+.rules-button{
+    font-size: 1.5rem;
+    border-radius: 100%;
+    padding: 0.5rem;
+    margin: 1rem 0;
 }

@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import LevelCompleteModal from '../../components/LevelCompleteModal/LevelCompleteModal';
 import Header from "../../components/Header/Header.jsx"
+import GameRules from '../../components/GameRules/GameRules.jsx';
 
 
 function GamePage() {
@@ -18,6 +19,7 @@ function GamePage() {
     const [newHealth, setNewHealth] = useState(5);
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
+    const [isRulesOpen, setIsRulesOpen] = useState(false);
     const [goNext, setGoNext] = useState(false);
 
     const { unityProvider, addEventListener, removeEventListener, sendMessage } = useUnityContext({
@@ -89,6 +91,13 @@ function GamePage() {
         setIsOpen(true);
     };
 
+    const handleOpenRules = () => {
+        setIsRulesOpen(true);
+    };
+    const handleCloseRules = () => {
+        setIsRulesOpen(false);
+    };
+
     const handleCloseModal = () => {
         setIsOpen(false);
         sendMessage("PlayerCharacter", "ReloadScene");
@@ -111,22 +120,23 @@ function GamePage() {
                 {isType === true && (
                     <div className='player-info'>
                         <div className='player-info__type-cont'>
-                            <p>{`Type: `}</p>
+                            <p className='player-info__text'>{`Type: `}</p>
                             <img className="player-info__type" src={`http://localhost:8080/images/${type}.png`} alt="" />
                         </div>
                         <div className='health-bar'>
-                            <p>
+                            <p className='player-info__text'>
                                 {`HP: `}
                             </p>
                             <progress value={newHealth} max={5} />
                         </div>
-                        <p>{`Score: ${newScore}`}</p>
+                        <p className='player-info__text'>{`Score: ${newScore}`}</p>
                     </div>
                 )}
                 <Unity unityProvider={unityProvider} style={{
                     width: '100%',
                     height: '100%',
                 }} />
+                            <button className='rules-button' onClick={handleOpenRules}>?</button>
                 {isGameOver === true && (
                     { handleGameOver }
                 )}
@@ -138,7 +148,11 @@ function GamePage() {
                         score={newScore}
                     />
                 )}
+                {isRulesOpen && (
+                    <GameRules isRulesOpen={isRulesOpen} onRulesClose={handleCloseRules} />
+                )}
             </section>
+
         </>
     )
 }

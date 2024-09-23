@@ -23,10 +23,10 @@ function GamePage() {
     const [goNext, setGoNext] = useState(false);
 
     const { unityProvider, addEventListener, removeEventListener, sendMessage } = useUnityContext({
-        loaderUrl: "Build/type-podcast-client.loader.js",
-        dataUrl: "Build/type-podcast-client.data",
-        frameworkUrl: "Build/type-podcast-client.framework.js",
-        codeUrl: "Build/type-podcast-client.wasm",
+        loaderUrl: "Build/Build.loader.js",
+        dataUrl: "Build/Build.data",
+        frameworkUrl: "Build/Build.framework.js",
+        codeUrl: "Build/Build.wasm",
     });
 
     const handleSendType = useCallback((type) => {

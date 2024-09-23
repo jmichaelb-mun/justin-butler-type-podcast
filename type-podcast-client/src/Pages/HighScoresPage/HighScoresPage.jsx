@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import HallOfFameCard from '../../components/HallOfFameCard/HallOfFameCard'
 import './HighScoresPage.scss'
 import axios from "axios";
+import Header from '../../components/Header/Header';
 
 export default function HighScoresPage() {
     const [scores, setScores] = useState([]);
@@ -27,17 +28,20 @@ export default function HighScoresPage() {
         )
     }
     return (
-        <>
-            <h1>THE TYPE PODCAST</h1>
-            <div className='border-box'>
-                <div className='hof-cont'>
-                    {
-                        scores.map((player) => (
-                            <HallOfFameCard key={player.id} name={player.name} score={player.score} />
-                        ))}
+        <div>
+            <Header />
+            <div className='hof-cont'>
+                <div className='hof-cont__border-box'>
+                    <p className='hof-cont__title'>WELCOME TO THE HALL OF FAME</p>
+                    <div className='hof-cont__screen'>
+                        {
+                            scores.map((player) => (
+                                <HallOfFameCard key={player.id} name={player.name} score={player.score} />
+                            ))}
 
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

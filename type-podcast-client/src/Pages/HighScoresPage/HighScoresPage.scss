@@ -1,23 +1,32 @@
 @use "../../styles/partials/_variables" as *;
-.hof-cont {
-    
-    max-width: 850px;    
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: $screen-dark;
-    padding: 1rem 0;
-}
-.border-box{
-    width: 80%;
-    max-width: 850px;    
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: $secondary-font;
-    padding: 2rem 2rem 3rem;
+.hof-cont{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    &__screen {    
+        max-width: 900px;    
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: $screen-dark;
+        padding: 1rem 0;
+        gap: 1rem;    
+    }
+    &__border-box{
+        width: 100%;
+        max-width: 900px;    
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: $secondary-font;
+        padding: 2rem 2rem 3rem;
+        margin-top: 2rem;
+    }
+    &__title{
+        padding-bottom: 1rem;
+    }
 }

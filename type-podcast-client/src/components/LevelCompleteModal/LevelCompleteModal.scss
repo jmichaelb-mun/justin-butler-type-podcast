@@ -24,7 +24,9 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border: 2px solid black;
+        border: 6px double black;
+        padding:1rem;
+        text-align: left;
 
         @include tablet {
             width: 50%;
@@ -68,7 +70,7 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        // @include label;
+
 
         @include tablet {
             justify-content: flex-end;
@@ -82,8 +84,8 @@
             background-color: white;
             color: black;
             margin: 1rem;
-            border: 1px solid black;
-            border-radius: 1rem;
+            border: 3px double black;
+            border-radius: 0.25rem;
             cursor: pointer;
 
             @include tablet {

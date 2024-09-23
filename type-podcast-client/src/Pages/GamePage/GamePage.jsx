@@ -94,6 +94,16 @@ function GamePage() {
         sendMessage("PlayerCharacter", "ReloadScene");
     };
 
+    const handleSaveGame = async () => {
+        try {
+            await axios.post("http://localhost:8080/score", { name: "May", score: newScore });
+        } catch (error) {
+            alert(`ERROR: ${error.response.data}`, error);
+        }
+        setIsOpen(false);
+        navigate("/", { replace: true });
+    }
+
     return (
         <>
             <Header />
@@ -113,7 +123,10 @@ function GamePage() {
                         <p>{`Score: ${newScore}`}</p>
                     </div>
                 )}
-                <Unity unityProvider={unityProvider} />
+                <Unity unityProvider={unityProvider} style={{
+                    width: '100%',
+                    height: '100%',
+                }} />
                 {isGameOver === true && (
                     { handleGameOver }
                 )}
@@ -121,6 +134,8 @@ function GamePage() {
                     <LevelCompleteModal
                         onClose={handleCloseModal}
                         isOpen={isOpen}
+                        saveGame={handleSaveGame}
+                        score={newScore}
                     />
                 )}
             </section>

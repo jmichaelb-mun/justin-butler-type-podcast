@@ -1,15 +1,27 @@
-.typing-text{
-    font-size: 2rem;
-    margin:4rem;
+@use "../../styles/partials/_variables" as *;
+
+.typing-text {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin: 4rem;
+    color: $primary-font
 }
 
 
-
-.loss-page{
-    height:100vh;
-    width:75%;
+.loss-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    &__border-box {
+        width: 100%;
+        margin-top: 2rem;
+        max-width: 900px;
+        min-height: 18rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: $secondary-font;
+    }
 }

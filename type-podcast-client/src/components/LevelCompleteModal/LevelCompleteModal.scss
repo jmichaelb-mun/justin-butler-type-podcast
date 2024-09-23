@@ -1,3 +1,4 @@
+@use '../../styles/partials/variables' as *;
 @import "/src/styles/partials/mixins.scss"; 
 .modal-wrap { 
     display: none;
@@ -18,7 +19,7 @@
     &__content {
         position: relative;
         z-index: 5;
-        background-color: white;
+        background-color: $primary-font;
         width: 90%;
         height: auto;
         display: flex;
@@ -56,13 +57,12 @@
             display: flex;
             align-items: flex-start;
             padding-bottom: 1rem;
-            //@include page-header;
             font-size: 28px;
         }
 
         &--body {
             margin: 1rem;
-            color: black;
+            color: $secondary-font;
         }
     }
 
@@ -81,8 +81,8 @@
             justify-content: center;
             align-items: center;
             width: 50%;
-            background-color: white;
-            color: black;
+            background-color: $primary-font;
+            color: $secondary-font;
             margin: 1rem;
             border: 3px double black;
             border-radius: 0.25rem;
@@ -95,12 +95,12 @@
         }
 
         &--delete {
-            background-color: white;
+            background-color: $primary-font;
             padding: 0.5rem 1rem;
             margin: 1rem;
             width: 50%;
             border: 1px solid black;
-            color: black;
+            color: $secondary-font;
             border-radius: 1rem;
             cursor: pointer;
             

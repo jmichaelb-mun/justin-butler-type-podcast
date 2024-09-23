@@ -1,5 +1,6 @@
+@use '../../styles/partials/variables' as *;
 .hof-card{
-    background-color: white;
+    background-color: $primary-font;
     border-width: 6px;
     border-style: double;
     padding: 1rem;

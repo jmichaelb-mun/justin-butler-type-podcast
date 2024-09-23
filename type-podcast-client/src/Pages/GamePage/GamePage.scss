@@ -5,21 +5,31 @@
     width: 100%;
     height: 100%;
 }
-
+.game-page{
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .game-cont {
     width: 100%;
-    height: 75vw;
+    height: 90vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: black;
+    background-color: $secondary-font;
     padding: 2rem 2rem;
     margin-top: 2rem;
 
     @include tablet {
         height: 60vw;
-        max-height: 800px;
+        max-width: 1000px;
+    }
+
+    @include desktop {
+        height: 50vw;
+        max-width: 1000px;
     }
 }
 
@@ -47,14 +57,15 @@
             width: fit-content;
         }
     }
-    &__text{
-    color: white;
-    font-size: 10px;
 
-    @include tablet {
-        font-size: 1rem;
+    &__text {
+        color: $primary-font;
+        font-size: 10px;
+
+        @include tablet {
+            font-size: 1rem;
+        }
     }
-}
 }
 
 
@@ -72,11 +83,11 @@ progress {
 
     @include desktop {
         width: 8rem;
-        
+
     }
 
     &::-webkit-progress-bar {
-        background: white;
+        background: $primary-font;
         border-radius: 100px;
     }
 
@@ -94,7 +105,8 @@ progress {
     align-items: center;
     gap: 0.25rem;
 }
-.rules-button{
+
+.rules-button {
     font-size: 1.5rem;
     border-radius: 100%;
     padding: 0.5rem;

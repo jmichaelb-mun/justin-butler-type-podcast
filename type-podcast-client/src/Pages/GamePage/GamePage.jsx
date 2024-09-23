@@ -116,42 +116,45 @@ function GamePage() {
     return (
         <>
             <Header />
-            <section className='game-cont'>
-                {isType === true && (
-                    <div className='player-info'>
-                        <div className='player-info__type-cont'>
-                            <p className='player-info__text'>{`Type: `}</p>
-                            <img className="player-info__type" src={`http://localhost:8080/images/${type}.png`} alt="" />
+            <div className='game-page'>
+
+                <section className='game-cont'>
+                    {isType === true && (
+                        <div className='player-info'>
+                            <div className='player-info__type-cont'>
+                                <p className='player-info__text'>{`Type: `}</p>
+                                <img className="player-info__type" src={`http://localhost:8080/images/${type}.png`} alt="" />
+                            </div>
+                            <div className='health-bar'>
+                                <p className='player-info__text'>
+                                    {`HP: `}
+                                </p>
+                                <progress value={newHealth} max={5} />
+                            </div>
+                            <p className='player-info__text'>{`Score: ${newScore}`}</p>
                         </div>
-                        <div className='health-bar'>
-                            <p className='player-info__text'>
-                                {`HP: `}
-                            </p>
-                            <progress value={newHealth} max={5} />
-                        </div>
-                        <p className='player-info__text'>{`Score: ${newScore}`}</p>
-                    </div>
-                )}
-                <Unity unityProvider={unityProvider} style={{
-                    width: '100%',
-                    height: '100%',
-                }} />
-                            <button className='rules-button' onClick={handleOpenRules}>?</button>
-                {isGameOver === true && (
-                    { handleGameOver }
-                )}
-                {isOpen && (
-                    <LevelCompleteModal
-                        onClose={handleCloseModal}
-                        isOpen={isOpen}
-                        saveGame={handleSaveGame}
-                        score={newScore}
-                    />
-                )}
-                {isRulesOpen && (
-                    <GameRules isRulesOpen={isRulesOpen} onRulesClose={handleCloseRules} />
-                )}
-            </section>
+                    )}
+                    <Unity unityProvider={unityProvider} style={{
+                        width: '100%',
+                        height: '100%',
+                    }} />
+                    <button className='rules-button' onClick={handleOpenRules}>?</button>
+                    {isGameOver === true && (
+                        { handleGameOver }
+                    )}
+                    {isOpen && (
+                        <LevelCompleteModal
+                            onClose={handleCloseModal}
+                            isOpen={isOpen}
+                            saveGame={handleSaveGame}
+                            score={newScore}
+                        />
+                    )}
+                    {isRulesOpen && (
+                        <GameRules isRulesOpen={isRulesOpen} onRulesClose={handleCloseRules} />
+                    )}
+                </section>
+            </div>
 
         </>
     )
